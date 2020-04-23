@@ -78,6 +78,10 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - zk_kafka
+    depends_on:
+      - zoo1
+      - zoo2
+      - zoo3
 
   kafka_manager:
     image: pllsxyc/kafka-manager
