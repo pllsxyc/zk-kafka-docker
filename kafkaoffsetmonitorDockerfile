@@ -1,0 +1,11 @@
+FROM centos:7.7.1908
+MAINTAINER pllsxyc<pllsxyc@163.com>
+#安装jdk
+RUN yum install -y java-1.8.0-openjdk
+
+COPY KafkaOffsetMonitor-assembly-0.2.1.jar /
+
+EXPOSE 9999
+
+ENTRYPOINT ["java","-cp","/KafkaOffsetMonitor-assembly-0.2.1.jar","com.quantifind.kafka.offsetapp.OffsetGetterWeb","--port","9999","--refresh","10.seconds","--retain","2.days"]
+CMD ["--zk","zoo1:2181/kafka1,zoo2:2181/kafka1,zoo3:2181/kafka1"]

@@ -1,0 +1,13 @@
+FROM openjdk:11
+MAINTAINER pllsxyc<pllsxyc@163.com>
+ADD cmak-3.0.0.4 /kafka-manager
+WORKDIR /kafka-manager
+ENV ZK_HOSTS localhost:2181
+ENV KAFKA_MANAGER_AUTH_ENABLED true
+ENV KAFKA_MANAGER_USERNAME admin
+ENV KAFKA_MANAGER_PASSWORD 123456
+ENV CONSUMER_PROPERTIES_FILE /tmp/consumer.txt
+
+EXPOSE 8080
+
+CMD ["/kafka-manager/bin/cmak","-Dconfig.file=/kafka-manager/conf/application.conf","-Dhttp.port=8080"]
